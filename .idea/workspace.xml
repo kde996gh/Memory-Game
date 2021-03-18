@@ -1,31 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="354c4d45-2ce3-411e-87b8-67ac806f6624" name="Default Changelist" comment="deck change works">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/cards/newcastle.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/cards/newcastle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/cards/westham.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/cards/westham.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
-    </list>
+    <list default="true" id="354c4d45-2ce3-411e-87b8-67ac806f6624" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,7 +27,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -65,59 +41,33 @@
       <workItem from="1615458154642" duration="6979000" />
       <workItem from="1615483209919" duration="6613000" />
       <workItem from="1615536447310" duration="7868000" />
-      <workItem from="1615563419435" duration="189000" />
-      <workItem from="1615569582265" duration="25754000" />
-      <workItem from="1615713565628" duration="2863000" />
+      <workItem from="1615563419435" duration="829000" />
+      <workItem from="1615738485292" duration="2602000" />
+      <workItem from="1615744774346" duration="1697000" />
+      <workItem from="1615794975192" duration="1191000" />
+      <workItem from="1615818022598" duration="1198000" />
+      <workItem from="1615825812158" duration="295000" />
+      <workItem from="1615895615010" duration="635000" />
+      <workItem from="1615968846708" duration="13493000" />
+      <workItem from="1616054377093" duration="600000" />
     </task>
-    <task id="LOCAL-00001" summary="deck change works">
-      <created>1615627541703</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1615627541703</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="deck change works" />
-    <option name="LAST_COMMIT_MESSAGE" value="deck change works" />
   </component>
   <component name="WindowStateProjectService">
     <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1615483227959">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1615483227959" />
-    <state x="277" y="62" key="SettingsEditor" timestamp="1615650854745">
+    <state x="479" y="16" width="578" height="801" key="find.popup" timestamp="1615459684187">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="277" y="62" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1615650854745" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1615627585603">
+    <state x="479" y="16" width="578" height="801" key="find.popup/0.0.1536.834@0.0.1536.834" timestamp="1615459684187" />
+    <state x="425" y="189" key="run.anything.popup" timestamp="1615979226507">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1615627585603" />
-    <state x="479" y="16" width="578" height="801" key="find.popup" timestamp="1615674152885">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="479" y="16" width="578" height="801" key="find.popup/0.0.1536.834@0.0.1536.834" timestamp="1615674152885" />
-    <state x="425" y="189" key="run.anything.popup" timestamp="1615624890645">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1615624890645" />
+    <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1615979226507" />
   </component>
 </project>
