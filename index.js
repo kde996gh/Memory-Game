@@ -89,65 +89,86 @@ let matchedImg = "./images/succesBackground.png";
 let lock = false;
 //a választatott lapok tömbje, itt tárolom el majd ellenőrzöm ha a mérete 2
 let guessCards = [];
+let pairCounter; // párszámláló a játék végéhez
+let pointCounter; // pontszámláló
+let time; 
 
+let startWhistle = new Audio('./sounds/startwhistle.wav');
+let pairFound = new Audio('./sounds/correctanswer.mp3');
+let pairNotFound = new Audio('./sounds/incorrectanswer.wav');
+let winSound = new Audio('./sounds/winsound2.wav');
 
 $(document).ready(function () {
   let container = $(".container");
-
-  let startButton = $(".newGame");
+  let countDown = $("#countdown");
+  let startButton = $("#newGame");
 
   let currentGameCards = [];
   startButton.click(function () {
-    currentGameCards = createMap(6); //pálya létrehozása a random generált tömbbel
+    winSound.pause();
+    winSound.currentTime = 0;
+    time = "";
+    pairCounter = 0;
+    pointCounter = 0;
+    currentGameCards = createMap(2); //pálya létrehozása a random generált tömbbel
     //console.log(currentGameCards);
-    startButton.text("Restart");     // első inditás utána átírja a tartalmat, ha újra akarjuk kezdeni
-    container.empty();              //játéktér ürítése
-    lock = false;                   //a lapzárást alapból falsera állítja
-    guessCards = [];                //a választott lapok tömbje
-    showHide();                     // metódus, ami majd megjeleníti a pályát és az elemek attribútumait állítja be
+    startButton.text("Restart"); // első inditás utána átírja a tartalmat, ha újra akarjuk kezdeni
+    container.empty(); //játéktér ürítése
+    lock = false; //a lapzárást alapból falsera állítja
+    guessCards = []; //a választott lapok tömbje
+    startWhistle.play();
+    showHide();
+    timer(10); // metódus, ami majd megjeleníti a pályát és az elemek attribútumait állítja be
   });
 
   function showHide() {
     // if (justStarted) {
-    for (let i = 0; i < currentGameCards.length; i++) { // a random tömb méret alapján készíti
-      let imageMain = $("<div></div>", {                //előbb egy main div, aminek lesz a click metódusa a lényeg
-        class: "card"       
+    for (let i = 0; i < currentGameCards.length; i++) {
+      // a random tömb méret alapján készíti
+      let imageMain = $("<div></div>", {
+        //előbb egy main div, aminek lesz a click metódusa a lényeg
+        class: "card",
       });
-      let imageFront = $("<img>", {                     // div ami a kép elejét tartalmazza
+      let imageFront = $("<img>", {
+        // div ami a kép elejét tartalmazza
         class: "front",
         src: frontCardImg,
         hidden: true,
       });
-      let imageBack = $("<img>", {                         //div ami a kép hátulját tartalmazza
+      let imageBack = $("<img>", {
+        //div ami a kép hátulját tartalmazza
         class: "back",
         src: currentGameCards[i].src,
         clubid: currentGameCards[i].id,
         hidden: false,
       });
-      let imageMatched = $("<img>", {                       //div ami a kitalálás után töltődik be
+      let imageMatched = $("<img>", {
+        //div ami a kitalálás után töltődik be
         class: "matched",
         src: matchedImg,
         hidden: true,
       });
 
-      imageMain.append(imageFront);                 // megfelelő divek hierarchiájának felépítése
+      imageMain.append(imageFront); // megfelelő divek hierarchiájának felépítése
       imageMain.append(imageBack);
       imageMain.append(imageMatched);
 
       container.append(imageMain);
 
-      imageMain.on("click", function () {                   // a képekre való kattintás beállítása
+      imageMain.on("click", function () {
+        // a képekre való kattintás beállítása
         if (
           !lock &&
-          $(this).children(".front").prop("hidden") === false &&       // feltétel, ha nincs lezárva és nincs felfedve a lap
-          $(this).children(".back").prop("hidden") === true            
+          $(this).children(".front").prop("hidden") === false && // feltétel, ha nincs lezárva és nincs felfedve a lap
+          $(this).children(".back").prop("hidden") === true
         ) {
-          $(this).children(".front").prop("hidden", true);          // akkor felfedi és berakja a tippelt tömbbe
+          $(this).children(".front").prop("hidden", true); // akkor felfedi és berakja a tippelt tömbbe
           $(this).children(".back").prop("hidden", false);
           guessCards.push($(this));
         }
-        if (guessCards.length === 2) {                              //ha tippek száma eléri a kettőt, akkor párt ellenőrzi
-          lock = true;                                              //lezárja a felfordítás lehetőségét
+        if (guessCards.length === 2) {
+          //ha tippek száma eléri a kettőt, akkor párt ellenőrzi
+          lock = true; //lezárja a felfordítás lehetőségét
           setTimeout(function () {
             checkMatch();
           }, 300);
@@ -177,6 +198,7 @@ $(document).ready(function () {
       secondCard = guessCards[1].children(".back").attr("clubid");
       // talált párok módosítása a pályán
       if (firstCard === secondCard) {
+        pairFound.play();
         guessCards[0].children(".front").prop("hidden", true);
         guessCards[0].children(".back").prop("hidden", true);
         guessCards[0].children(".matched").prop("hidden", false);
@@ -184,8 +206,12 @@ $(document).ready(function () {
         guessCards[1].children(".front").prop("hidden", true);
         guessCards[1].children(".back").prop("hidden", true);
         guessCards[1].children(".matched").prop("hidden", false);
+
+        pairCounter += 2;
+        pointCounter += 5;
       } else {
         // nem megfelelő párok módosítása a pályán, visszaállítás
+        pairNotFound.play();
         guessCards[0].children(".front").prop("hidden", false);
         guessCards[0].children(".back").prop("hidden", true);
         guessCards[0].children(".matched").prop("hidden", true);
@@ -195,6 +221,11 @@ $(document).ready(function () {
         guessCards[1].children(".matched").prop("hidden", true);
       }
       guessCards = [];
+    }
+    if (pairCounter === currentGameCards.length) {
+      setTimeout(() => {
+        win();
+      }, 300);
     }
     //időzíteni kell a feloldálst mivel ha nincs akkor a checkmatch után dupla kattintással feloldható 1 lap önmagában
     setTimeout(() => {
@@ -216,5 +247,41 @@ $(document).ready(function () {
     currentGameCardsArray.sort((a, b) => 0.5 - Math.random());
     return currentGameCardsArray;
   }
+
+  function win() {
+    winSound.play();
+    container.empty();
+    let gratAlert = $("<h1> </h1>").text("Nyertél!");
+    let pointAlert = $("<h2> </h2>").text("Pontszámod: " + pointCounter);
+    container.append(gratAlert);
+    container.append("<br>");
+    container.append(pointAlert);
+    clearInterval(time);
+
+  }
+
+  function timer(timeInSeconds) {
+    let sec = timeInSeconds;
+    time = setInterval(function () {
+      console.log(sec);
+      sec--;
+      countDown.text(sec);
+      if (sec <= 0) {
+        clearInterval(time);
+        ranOutOfTime();
+      }
+    }, 1000);
+  }
+
+  function ranOutOfTime(){
+    container.empty();
+
+    let timeAlert = $("<h2> </h2>").text("Kifutottál az időből!");
+    container.append(timeAlert);
+
+    let pointAlert2 = $("<h2> </h2>").text("Pontszámod: " + pointCounter);
+    container.append(pointAlert2);
+  }
+
 
 }); //jquery vége
