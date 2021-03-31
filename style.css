@@ -1,15 +1,77 @@
+body{
+
+}
+
+#field{
+   /*  background-color: aquamarine;
+    border: 1px solid black;
+   overflow: hidden;
+    width: auto;*/
+    display: flex;
+    width: 100%;
+    margin:  auto;
+    justify-content: center;
+    margin-top: 20%;
+}
+
+#menu{
+
+
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+
+    background-color: beige;
+    width: 30%;
+    border: 2px solid red;
+    margin-right: 5px;
+    border-radius: 10px;
+}
+
+.btnFormat{
+    width: 40%;
+}
+
+input {
+    width: 40%;
+}
+
+#gameArea{
+    display: flex;
+    align-items: center;
+    background-color:cornflowerblue;
+    border: 1px solid green;
+  /*  float: left; /* add this */
+    width: 70%;
+    
+}
+
+
 .container{
-    display: grid;
-    grid-template-columns: auto auto auto auto auto;
-    border: 5px solid black;
-    width: 650px;
-    padding: 5px;
+  /*  display: flex; /* or inline-flex 
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+ padding: 5px; */
+
+    display: inline-grid;
+    grid-template-columns: auto auto ;
+    border-radius: 10px;
+    background-color: beige;
+    /* border: 2px solid red; */
+
+
+    /* border: 5px solid black; */
+    
 }
 
 .container .card{
-    width: 150px;
-    height: 150px;
-   margin: 5px;
+
+    width: 100px;
+    height: 100px;
+     margin: 5px; 
 
     border: 2px solid chocolate;
 }
@@ -18,4 +80,18 @@
     width: 100px;
     height: 20px;
     background-color: aquamarine;
+}
+
+
+#countdown{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: greenyellow;
+    margin: 5px;
+    border: 2px solid green;
+    border-radius: 10px;
+    font-size: large;
 }

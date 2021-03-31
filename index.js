@@ -91,12 +91,15 @@ let lock = false;
 let guessCards = [];
 let pairCounter; // párszámláló a játék végéhez
 let pointCounter; // pontszámláló
-let time; 
+let time;
 
-let startWhistle = new Audio('./sounds/startwhistle.wav');
-let pairFound = new Audio('./sounds/correctanswer.mp3');
-let pairNotFound = new Audio('./sounds/incorrectanswer.wav');
-let winSound = new Audio('./sounds/winsound2.wav');
+let startWhistle = new Audio("./sounds/startwhistle.wav");
+let pairFound = new Audio("./sounds/correctanswer.mp3");
+let pairNotFound = new Audio("./sounds/incorrectanswer.wav");
+let winSound = new Audio("./sounds/winsound2.wav");
+
+let playerName;
+let mapSizeInput;
 
 $(document).ready(function () {
   let container = $(".container");
@@ -105,12 +108,17 @@ $(document).ready(function () {
 
   let currentGameCards = [];
   startButton.click(function () {
+    playerName = $("#userName").val();
+    console.log(playerName);
+    container.removeAttr("hidden");
+    container.css({"border" : "2px solid red"});
+    mapSizeInput = 6;
     winSound.pause();
     winSound.currentTime = 0;
     time = "";
     pairCounter = 0;
     pointCounter = 0;
-    currentGameCards = createMap(2); //pálya létrehozása a random generált tömbbel
+    currentGameCards = createMap(mapSizeInput); //pálya létrehozása a random generált tömbbel
     //console.log(currentGameCards);
     startButton.text("Restart"); // első inditás utána átírja a tartalmat, ha újra akarjuk kezdeni
     container.empty(); //játéktér ürítése
@@ -118,7 +126,7 @@ $(document).ready(function () {
     guessCards = []; //a választott lapok tömbje
     startWhistle.play();
     showHide();
-    timer(10); // metódus, ami majd megjeleníti a pályát és az elemek attribútumait állítja be
+    timer(10000); // metódus, ami majd megjeleníti a pályát és az elemek attribútumait állítja be
   });
 
   function showHide() {
@@ -149,11 +157,24 @@ $(document).ready(function () {
         hidden: true,
       });
 
+      if (mapSizeInput == 6 || mapSizeInput == 8)
+        $(".container").css({ "grid-template-columns": "auto auto auto auto" });
+      else if (mapSizeInput == 10)
+        $(".container").css({
+          "grid-template-columns": "auto auto auto auto auto ",
+        });
+      else if (mapSizeInput == 12 || mapSizeInput == 15)
+        $(".container").css({
+          "grid-template-columns": "auto auto auto auto auto auto ",
+        });
+
       imageMain.append(imageFront); // megfelelő divek hierarchiájának felépítése
       imageMain.append(imageBack);
       imageMain.append(imageMatched);
 
       container.append(imageMain);
+
+      //
 
       imageMain.on("click", function () {
         // a képekre való kattintás beállítása
@@ -257,7 +278,6 @@ $(document).ready(function () {
     container.append("<br>");
     container.append(pointAlert);
     clearInterval(time);
-
   }
 
   function timer(timeInSeconds) {
@@ -273,7 +293,7 @@ $(document).ready(function () {
     }, 1000);
   }
 
-  function ranOutOfTime(){
+  function ranOutOfTime() {
     container.empty();
 
     let timeAlert = $("<h2> </h2>").text("Kifutottál az időből!");
@@ -282,6 +302,4 @@ $(document).ready(function () {
     let pointAlert2 = $("<h2> </h2>").text("Pontszámod: " + pointCounter);
     container.append(pointAlert2);
   }
-
-
 }); //jquery vége
