@@ -105,20 +105,23 @@ $(document).ready(function () {
   let container = $(".container");
   let countDown = $("#countdown");
   let startButton = $("#newGame");
+  let informations = $('.informations')
+  let pairSize;
 
   let currentGameCards = [];
   startButton.click(function () {
+    informations.css({"display":"flex"});
     playerName = $("#userName").val();
     console.log(playerName);
     container.removeAttr("hidden");
-    container.css({"border" : "2px solid red"});
-    mapSizeInput = 6;
+    container.css({ border: "2px solid red" });
+    pairSize= $("#pairSize").val();
     winSound.pause();
     winSound.currentTime = 0;
     time = "";
     pairCounter = 0;
     pointCounter = 0;
-    currentGameCards = createMap(mapSizeInput); //pálya létrehozása a random generált tömbbel
+    currentGameCards = createMap(pairSize); //pálya létrehozása a random generált tömbbel
     //console.log(currentGameCards);
     startButton.text("Restart"); // első inditás utána átírja a tartalmat, ha újra akarjuk kezdeni
     container.empty(); //játéktér ürítése
@@ -157,16 +160,20 @@ $(document).ready(function () {
         hidden: true,
       });
 
-      if (mapSizeInput == 6 || mapSizeInput == 8)
+      if (pairSize == 6 || pairSize == 8)
         $(".container").css({ "grid-template-columns": "auto auto auto auto" });
-      else if (mapSizeInput == 10)
+      else if (pairSize == 10)
         $(".container").css({
           "grid-template-columns": "auto auto auto auto auto ",
         });
-      else if (mapSizeInput == 12 || mapSizeInput == 15)
+      else if (pairSize == 12 || pairSize == 15 || pairSize == 18)
         $(".container").css({
           "grid-template-columns": "auto auto auto auto auto auto ",
         });
+      else if (pairSize == 20)
+        $(".container").css({
+          "grid-template-columns": "auto auto auto auto auto auto auto auto",
+        });  
 
       imageMain.append(imageFront); // megfelelő divek hierarchiájának felépítése
       imageMain.append(imageBack);
