@@ -101,35 +101,44 @@ let winSound = new Audio("./sounds/winsound2.wav");
 let playerName;
 let mapSizeInput;
 
+let rankListSecTimer;
+let rankListTimer;
+
 $(document).ready(function () {
   let container = $(".container");
   let countDown = $("#countdown");
   let startButton = $("#newGame");
-  let informations = $('.informations')
+  let informations = $(".informations");
   let pairSize;
 
   let currentGameCards = [];
   startButton.click(function () {
-    informations.css({"display":"flex"});
-    playerName = $("#userName").val();
-    console.log(playerName);
-    container.removeAttr("hidden");
-    container.css({ border: "2px solid red" });
-    pairSize= $("#pairSize").val();
-    winSound.pause();
-    winSound.currentTime = 0;
-    time = "";
-    pairCounter = 0;
-    pointCounter = 0;
-    currentGameCards = createMap(pairSize); //pálya létrehozása a random generált tömbbel
-    //console.log(currentGameCards);
-    startButton.text("Restart"); // első inditás utána átírja a tartalmat, ha újra akarjuk kezdeni
-    container.empty(); //játéktér ürítése
-    lock = false; //a lapzárást alapból falsera állítja
-    guessCards = []; //a választott lapok tömbje
-    startWhistle.play();
-    showHide();
-    timer(10000); // metódus, ami majd megjeleníti a pályát és az elemek attribútumait állítja be
+    if ($("#userName").val() === "") {
+      alert("Add meg a neved!");
+    } else {
+      rankListSecTimer = 0;
+      clearInterval(time);
+      informations.css({ display: "flex" });
+      playerName = $("#userName").val();
+      console.log(playerName);
+      container.removeAttr("hidden");
+      container.css({ border: "2px solid red" });
+      pairSize = $("#pairSize").val();
+      winSound.pause();
+      winSound.currentTime = 0;
+      time = "";
+      pairCounter = 0;
+      pointCounter = 0;
+      currentGameCards = createMap(2); //pálya létrehozása a random generált tömbbel
+      //console.log(currentGameCards);
+      startButton.text("Restart"); // első inditás utána átírja a tartalmat, ha újra akarjuk kezdeni
+      container.empty(); //játéktér ürítése
+      lock = false; //a lapzárást alapból falsera állítja
+      guessCards = []; //a választott lapok tömbje
+      startWhistle.play();
+      showHide();
+      timer(0); // metódus, ami majd megjeleníti a pályát és az elemek attribútumait állítja be
+    }
   });
 
   function showHide() {
@@ -173,7 +182,7 @@ $(document).ready(function () {
       else if (pairSize == 20)
         $(".container").css({
           "grid-template-columns": "auto auto auto auto auto auto auto auto",
-        });  
+        });
 
       imageMain.append(imageFront); // megfelelő divek hierarchiájának felépítése
       imageMain.append(imageBack);
@@ -277,26 +286,41 @@ $(document).ready(function () {
   }
 
   function win() {
+    rankListTimer = countDown.text();
+    console.log(rankListTimer, rankListSecTimer);
     winSound.play();
     container.empty();
-    let gratAlert = $("<h1> </h1>").text("Nyertél!");
-    let pointAlert = $("<h2> </h2>").text("Pontszámod: " + pointCounter);
+    let gratAlert = $("<h1> </h1>").text("Gratulálunk " + playerName + "!");
+    let pointAlert = $("<h2> </h2>").text("Idő: " + rankListTimer);
+
     container.append(gratAlert);
-    container.append("<br>");
+    //container.append("<br>");
     container.append(pointAlert);
     clearInterval(time);
+    $(".container").css({ "grid-template-columns": "auto" });
   }
 
   function timer(timeInSeconds) {
     let sec = timeInSeconds;
+    let minutes = 0;
+
     time = setInterval(function () {
-      console.log(sec);
-      sec--;
-      countDown.text(sec);
-      if (sec <= 0) {
-        clearInterval(time);
-        ranOutOfTime();
+      // console.log(sec);
+      sec++;
+      rankListSecTimer++;
+      if (sec == 60) {
+        minutes += 1;
+        sec = 0;
       }
+      countDown.text(
+        minutes < 10
+          ? "0" + minutes + ":" + (sec < 10 ? "0" + sec : sec)
+          : minutes + ":" + (sec < 10 ? "0" + sec : sec)
+      );
+      //  if (sec <= 0) {
+      //    clearInterval(time);
+      //   ranOutOfTime();
+      //     }
     }, 1000);
   }
 
