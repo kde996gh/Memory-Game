@@ -1,120 +1,140 @@
 body {
-  background-color: aliceblue;
+    background-color: aliceblue;
 }
 
 #field {
-  /*  background-color: aquamarine;
-    border: 1px solid black;
-   overflow: hidden;
-    width: auto;*/
-  display: flex;
-  width: 100%;
-  margin: auto;
-  justify-content: center;
-  margin-top: 5%;
+    /*  background-color: aquamarine;
+      border: 1px solid black;
+     overflow: hidden;
+      width: auto;*/
+    display: flex;
+    width: 100%;
+    margin: auto;
+    justify-content: center;
+    margin-top: 5%;
 }
 
-#menu {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-color: beige;
-  width: 20%;
-  border: 2px solid red;
-  margin-right: 5px;
-  border-radius: 10px;
-}
 
 .btnFormat {
-  width: 40%;
-  margin: 10px;
+    width: 40%;
+    margin: 10px;
 }
 
 input {
-  width: 40%;
+    width: 40%;
 }
+
 label {
-  margin: 10px;
+    margin: 10px;
 }
+
 #pairSize {
-  width: 21%;
+    width: 21%;
 }
 
 #gameArea {
-  display: flex;
-  align-items: center;
-  background-color: cornflowerblue;
-  border: 1px solid green;
-  /*  float: left; /* add this */
-  width: 70%;
+    display: flex;
+    align-items: center;
+    background-color: cornflowerblue;
+    border: 1px solid green;
+    /*  float: left; /* add this */
+    width: 70%;
+}
+
+#menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: beige;
+    width: 20%;
+    border: 2px solid red;
+    margin-right: 5px;
+    border-radius: 10px;
 }
 
 .container {
-  /*  display: flex; /* or inline-flex 
-    flex-wrap: wrap;
-    align-content: center;
-    align-items: center;
- padding: 5px; */
+    /*  display: flex; /* or inline-flex
+      flex-wrap: wrap;
+      align-content: center;
+      align-items: center;
+   padding: 5px; */
+    margin-right: 5px;
 
-  display: inline-grid;
-  grid-template-columns: auto;
-  border-radius: 10px;
-  background-color: beige;
-  /* border: 2px solid red; */
+    display: inline-grid;
+    grid-template-columns: auto;
+    border-radius: 10px;
+    background-color: beige;
+    /* border: 2px solid red; */
 
-  /* border: 5px solid black; */
+    /* border: 5px solid black; */
 }
 
-.container .card {
-  width: 100px;
-  height: 100px;
-  margin: 5px;
+.ranklist {
+    /*display: flex;*/
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    width: 20%;
+    border: 2px solid red;
+    border-radius: 10px;
+    background-color: beige;
+}
 
-  border-radius: 10px;
+#ranklistheader {
+    top: 0;
+}
+
+
+.container .card {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+
+    border-radius: 10px;
 }
 
 img {
-  /* border: 2px solid rgb(145, 103, 73); */
-  border: 2px solid rgb(145, 103, 73);
-  border-radius: 10px;
+    /* border: 2px solid rgb(145, 103, 73); */
+    border: 2px solid rgb(145, 103, 73);
+    border-radius: 10px;
 }
 
 .newGame {
-  width: 100px;
-  height: 20px;
-  background-color: aquamarine;
+    width: 100px;
+    height: 20px;
+    background-color: aquamarine;
 }
 
 .informations {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
 }
 
 #countdown {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 50px;
-  background-color: greenyellow;
-  margin: 5px;
-  border: 2px solid green;
-  border-radius: 10px;
-  font-size: large;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 50px;
+    background-color: greenyellow;
+    margin: 5px;
+    border: 2px solid green;
+    border-radius: 10px;
+    font-size: large;
 }
 
 #pointCounter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  background-color: greenyellow;
-  margin: 5px;
-  border: 2px solid green;
-  border-radius: 10px;
-  font-size: large;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: greenyellow;
+    margin: 5px;
+    border: 2px solid green;
+    border-radius: 10px;
+    font-size: large;
 }
