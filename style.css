@@ -1,12 +1,8 @@
 body {
-    background-color: aliceblue;
+    background-color: #585a58;
 }
 
 #field {
-    /*  background-color: aquamarine;
-      border: 1px solid black;
-     overflow: hidden;
-      width: auto;*/
     display: flex;
     width: 100%;
     margin: auto;
@@ -54,24 +50,14 @@ label {
 }
 
 .container {
-    /*  display: flex; /* or inline-flex
-      flex-wrap: wrap;
-      align-content: center;
-      align-items: center;
-   padding: 5px; */
     margin-right: 5px;
-
     display: inline-grid;
     grid-template-columns: auto;
     border-radius: 10px;
     background-color: beige;
-    /* border: 2px solid red; */
-
-    /* border: 5px solid black; */
 }
 
 .ranklist {
-    /*display: flex;*/
     align-items: center;
     justify-content: start;
     flex-direction: column;
@@ -95,7 +81,6 @@ label {
 }
 
 img {
-    /* border: 2px solid rgb(145, 103, 73); */
     border: 2px solid rgb(145, 103, 73);
     border-radius: 10px;
 }

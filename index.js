@@ -99,7 +99,6 @@ let pairNotFound = new Audio("./sounds/incorrectanswer.wav");
 let winSound = new Audio("./sounds/winsound2.wav");
 
 let playerName;
-let mapSizeInput;
 
 let rankListSecTimer;
 let rankListTimer;
@@ -108,7 +107,6 @@ $(document).ready(function () {
     let container = $(".container");
     let countDown = $("#countdown");
     let startButton = $("#newGame");
-    let ranklistButton = $("#rankListButton");
     let ranklist = $(".ranklist");
     let informations = $(".informations");
     let pairSize;
@@ -120,41 +118,32 @@ $(document).ready(function () {
         } else {
             rankListSecTimer = 0;
             clearInterval(time);
+            time = "";
+
             informations.css({display: "flex"});
             playerName = $("#userName").val();
-            //  console.log(playerName);
             container.removeAttr("hidden");
             container.css({border: "2px solid red"});
             pairSize = $("#pairSize").val();
             winSound.pause();
             winSound.currentTime = 0;
-            time = "";
+
             pairCounter = 0;
             pointCounter = 0;
             currentGameCards = createMap(pairSize); //pálya létrehozása a random generált tömbbel
-            //console.log(currentGameCards);
             startButton.text("Restart"); // első inditás utána átírja a tartalmat, ha újra akarjuk kezdeni
             container.empty(); //játéktér ürítése
             lock = false; //a lapzárást alapból falsera állítja
             guessCards = []; //a választott lapok tömbje
             startWhistle.play();
             showHide(pairSize);
-            timer(0); // metódus, ami majd megjeleníti a pályát és az elemek attribútumait állítja be
             ranklist.css("display", "flex");
             fill_toplist();
 
         }
     });
 
-    ranklistButton.click(function () {
-
-        ranklist.css("display", "flex");
-        fill_toplist();
-
-    })
-
     function showHide(param) {
-        // if (justStarted) {
         for (let i = 0; i < currentGameCards.length; i++) {
             // a random tömb méret alapján készíti
             let imageMain = $("<div></div>", {
@@ -202,8 +191,6 @@ $(document).ready(function () {
 
             container.append(imageMain);
 
-            //
-
             imageMain.on("click", function () {
                 // a képekre való kattintás beállítása
                 if (
@@ -224,34 +211,48 @@ $(document).ready(function () {
                 }
             });
         }
+
         // lapok megmutatása, majd időzítéssel elrejtve
         if (parseInt(param) === 6) {
-            //console.log(typeof param)
             setTimeout(() => {
+                clearInterval(time);// kell ide is a clear előbb, az egymás után sokszori ujrainditás kivédésére
+                timer(0); // metódus, ami majd megjeleníti a pályát és az elemek attribútumait állítja be
                 hideCards();
-            }, 4000);
+            }, 3000);
         } else if (parseInt(param) === 8) {
             setTimeout(() => {
+                clearInterval(time);// kell ide is a clear előbb, az egymás után sokszori ujrainditás kivédésére
+                timer(0);
                 hideCards();
-            }, 5000);
+            }, 4000);
         } else if (parseInt(param) === 10) {
             setTimeout(() => {
+                clearInterval(time);// kell ide is a clear előbb, az egymás után sokszori ujrainditás kivédésére
+                timer(0);
                 hideCards();
             }, 6000);
         } else if (parseInt(param) === 12) {
             setTimeout(() => {
+                clearInterval(time);// kell ide is a clear előbb, az egymás után sokszori ujrainditás kivédésére
+                timer(0);
                 hideCards();
             }, 7000);
         } else if (parseInt(param) === 15) {
             setTimeout(() => {
+                clearInterval(time);// kell ide is a clear előbb, az egymás után sokszori ujrainditás kivédésére
+                timer(0);
                 hideCards();
             }, 8000);
         } else if (parseInt(param) === 18) {
             setTimeout(() => {
+                clearInterval(time);// kell ide is a clear előbb, az egymás után sokszori ujrainditás kivédésére
+                timer(0);
                 hideCards();
             }, 9000);
         } else if (parseInt(param) === 20) {
             setTimeout(() => {
+                clearInterval(time);// kell ide is a clear előbb, az egymás után sokszori ujrainditás kivédésére
+                timer(0);
                 hideCards();
             }, 10000);
         }
@@ -318,7 +319,6 @@ $(document).ready(function () {
             currentGameCardsArray.push(cardsCopy[randomNumber]);
             currentGameCardsArray.push(cardsCopy[randomNumber]);
             cardsCopy.splice(randomNumber, 1); // a kiválasztott elem törlése a másolt tömbből hogy ne ismétlődhessen
-            // currentGameCardsArray[i].id = i;
         }
         //sorrend randomizálása
         currentGameCardsArray.sort((a, b) => 0.5 - Math.random());
@@ -327,16 +327,19 @@ $(document).ready(function () {
 
     function win() {
         rankListTimer = countDown.text();
-        // console.log(rankListTimer, rankListSecTimer);
         winSound.play();
         container.empty();
         let gratAlert = $("<h1> </h1>").text("Gratulálunk " + playerName + "!");
         let pointAlert = $("<h2> </h2>").text("Idő: " + rankListTimer);
 
         container.append(gratAlert);
-        //container.append("<br>");
         container.append(pointAlert);
-        localStorage.setItem(playerName, rankListSecTimer);
+        // local storage eltoráls végett kell json format, a ranklist mindig az aktuális pályaméretre vonatkozik
+        let ranklistinfo = {
+            name: playerName,
+            time: rankListSecTimer
+        };
+        localStorage.setItem(JSON.stringify(ranklistinfo), pairSize);
         fill_toplist();
 
         clearInterval(time);
@@ -345,28 +348,33 @@ $(document).ready(function () {
 
     function fill_toplist() {
         ranklist.empty();
-        // vegigmegyunk a localStorage mentett elemein es egy uj tombbe pakoljuk. asszociativ tomb
+        //localstroage bejárás
         let data = [];
         for (let i = 0; i < localStorage.length; i++) {
-            data[i] = [localStorage.key(i), parseInt(localStorage.getItem(localStorage.key(i)))];
+            data[i] = [JSON.parse(localStorage.key(i)), parseInt(localStorage.getItem(localStorage.key(i)))];
         }
-        // csokkeno sorrendbe rendezzuk az elemeket az elert pontszam alapjan
+        //rendezés csökkenőbe
         data.sort(function (a, b) {
-            return a[1] - b[1];
+            return a[0].time - b[0].time
         });
         // a 10 legtobb pontot elert jatekost jelezzuk ki a listan
         let h1 = "<h1> Toplista </h1>"
         let ol = $("<ol> </ol>");
 
-        for (let act_data of data.keys()) {
-            if (act_data < 10) {
-                ol.append("<li>" + data[act_data][0] + ' - ' + secondsToMinuteConvert(data[act_data][1]) + "</li>");
+        //html ranklist feltöltése
+        for (let i of data.keys()) {
+            if (i < 10) {
+                let playerInfo = (data[i][0])
+                let pairType = (data[i][1]);
+                if (pairType == pairSize)
+                    ol.append("<li>" + playerInfo.name + ' - ' + secondsToMinuteConvert(playerInfo.time) + "</li>");
             }
         }
         ranklist.append(h1);
         ranklist.append(ol);
     }
 
+    //másodperc átalakítása perccé, ranklistához kell
     function secondsToMinuteConvert(secondsParameter) {
         let param = parseInt(secondsParameter);
         let minute = "00";
@@ -376,7 +384,6 @@ $(document).ready(function () {
             seconds = param - (60 * minute);
         }
         return minute + ":" + seconds;
-
     }
 
     function timer(timeInSeconds) {
@@ -384,7 +391,6 @@ $(document).ready(function () {
         let minutes = 0;
 
         time = setInterval(function () {
-            // console.log(sec);
             sec++;
             rankListSecTimer++;
             if (sec == 60) {
@@ -396,20 +402,6 @@ $(document).ready(function () {
                     ? "0" + minutes + ":" + (sec < 10 ? "0" + sec : sec)
                     : minutes + ":" + (sec < 10 ? "0" + sec : sec)
             );
-            //  if (sec <= 0) {
-            //    clearInterval(time);
-            //   ranOutOfTime();
-            //     }
         }, 1000);
-    }
-
-    function ranOutOfTime() {
-        container.empty();
-
-        let timeAlert = $("<h2> </h2>").text("Kifutottál az időből!");
-        container.append(timeAlert);
-
-        let pointAlert2 = $("<h2> </h2>").text("Pontszámod: " + pointCounter);
-        container.append(pointAlert2);
     }
 }); //jquery vége
