@@ -286,7 +286,7 @@ $(document).ready(function () {
                 guessCards[1].children(".matched").prop("hidden", false);
 
                 pairCounter += 2;
-                pointCounter += 5;
+                //pointCounter += 5;
             } else {
                 // nem megfelelő párok módosítása a pályán, visszaállítás
                 pairNotFound.play();
@@ -340,6 +340,7 @@ $(document).ready(function () {
             time: rankListSecTimer
         };
         localStorage.setItem(JSON.stringify(ranklistinfo), pairSize);
+        //console.log(localStorage)
         fill_toplist();
 
         clearInterval(time);
@@ -383,7 +384,7 @@ $(document).ready(function () {
             minute = Math.floor(param / 60);
             seconds = param - (60 * minute);
         }
-        return minute + ":" + seconds;
+        return minute + ":" + (parseInt(seconds) < 9 ? "0"+seconds : seconds);
     }
 
     function timer(timeInSeconds) {

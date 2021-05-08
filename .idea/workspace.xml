@@ -19,11 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="354c4d45-2ce3-411e-87b8-67ac806f6624" name="Default Changelist" comment="toplista">
+    <list default="true" id="354c4d45-2ce3-411e-87b8-67ac806f6624" name="Default Changelist" comment="toplista hotfix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +75,9 @@
       <workItem from="1616054377093" duration="600000" />
       <workItem from="1619647130845" duration="371000" />
       <workItem from="1619678936365" duration="2418000" />
-      <workItem from="1619682176113" duration="14238000" />
+      <workItem from="1619682176113" duration="14853000" />
+      <workItem from="1620119108683" duration="179000" />
+      <workItem from="1620462104675" duration="3137000" />
     </task>
     <task id="LOCAL-00001" summary="toplista">
       <created>1619698123292</created>
@@ -85,7 +86,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619698123292</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="toplista hotfix">
+      <created>1619706483770</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1619706483770</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -101,10 +109,12 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="toplista" />
-    <option name="LAST_COMMIT_MESSAGE" value="toplista" />
+    <MESSAGE value="toplista hotfix" />
+    <option name="LAST_COMMIT_MESSAGE" value="toplista hotfix" />
   </component>
   <component name="WindowStateProjectService">
     <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1615483227959">
@@ -115,10 +125,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="277" y="62" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1619700791909" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1619698132641">
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1619706492068">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1619698132641" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1619706492068" />
     <state x="479" y="16" width="578" height="801" key="find.popup" timestamp="1615459684187">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
